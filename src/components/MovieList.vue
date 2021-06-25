@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.moive.movies
+      return this.$store.state.movie.movies
     }
   }
 }
