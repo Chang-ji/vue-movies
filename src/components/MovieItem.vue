@@ -2,6 +2,10 @@
   <div
     :style="{ backgroundImage: `url(${movie.Poster})` }"
     class="movie">
+    <Loader
+      v-if="imageLoading"
+      :size="1.5"
+      absolute />
     <div class="info">
       <div class="year">
         {{ movie.Year }}
@@ -14,12 +18,30 @@
 </template>
 
 <script>
+import Loader from "~/components/Loader";
+
 export default {
+  components: {
+    Loader,
+  },
   props: {
-    // eslint-disable-next-line vue/require-default-prop
     movie: {
       type: Object,
-      defaulf: () => ({}),
+      default: () => ({}),
+    },
+  },
+  data() {
+    return {
+      imageLoading: true,
+    };
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    async init() {
+      await this.$loadImage(this.movie.Poster)
+      this.imageLoading = false
     },
   },
 };
@@ -38,7 +60,7 @@ export default {
   background-size: cover;
   overflow: hidden;
   &:hover::after {
-    content:'';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
