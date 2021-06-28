@@ -2,25 +2,11 @@ export default {
   // module!
   namespaced: true,
   // data!
-  state: () => ({ 
-    movies: [] 
+  state: () => ({
+    name: 'HEROPY',
+    email: 'thesecon@gmail.com',
+    blog: 'https://heropy.blog',
+    phone: '+82-10-1234-5678',
+    image: 'http://heropy.blog/css/images/logo.png',
   }),
-  //computed!
-  getters: {
-    movieIds(state) {
-      return state.movies.map(m => m.imdbId)
-    }
-  },
-  // methods!
-  mutations: {
-    resetMovies(state) {
-      state.movies = []
-    }
-  },
-  // 비동기
-  actions: {
-    searchMovies() {
-      
-    }
-  },
 };
